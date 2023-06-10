@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
 
-export default function Clicker() {
-    const [count, setCount] = useState(localStorage.getItem("count") ? parseInt(localStorage.getItem("count")) : 0)
+export default function Clicker({clickerName,color ="blue"}) {
+  const [count, setCount] = useState(localStorage.getItem(clickerName) ? parseInt(localStorage.getItem(clickerName)) : 0)
     
-    // useEffect(()=>{
-    // },[])
+    useEffect(()=>{
+      return () => {
+        localStorage.removeItem(clickerName)
+      }
+    },[])
 
     useEffect(()=>{
-      localStorage.setItem("count", count)
+      localStorage.setItem(clickerName, count)
     },[count])
   
     return (
     <>
-        <div>Number of click: {count}</div>
+        <div style={{color: color}}>Number of click: {count}</div>
         <button onClick={()=>{
             setCount(count + 1)
         }}>Click</button>
