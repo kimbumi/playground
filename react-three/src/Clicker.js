@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function Clicker({clickerName,color ="blue"}) {
+export default function Clicker({clickerName, color ="blue", clickHandler }) {
   const [count, setCount] = useState(localStorage.getItem(clickerName) ? parseInt(localStorage.getItem(clickerName)) : 0)
     
     useEffect(()=>{
@@ -17,7 +17,8 @@ export default function Clicker({clickerName,color ="blue"}) {
     <>
         <div style={{color: color}}>Number of click: {count}</div>
         <button onClick={()=>{
-            setCount(count + 1)
+          setCount(count + 1)
+          clickHandler()
         }}>Click</button>
     </>
   );

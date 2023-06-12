@@ -6,6 +6,8 @@ const root = createRoot(document.querySelector('#root'))
 
 root.render(
     <>
-        <App></App>
+        <App>
+            <h1>Test</h1>
+        </App>
     </>
 )
