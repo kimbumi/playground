@@ -1,19 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Clicker from './Clicker'
 
-export default function App({children}) {
+export default function App({clickerCount = 0, children}) {
 
   const [hasClicker, setHasClicker] = useState(true)
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(localStorage.getItem("totalCount") ? parseInt(localStorage.getItem("totalCount")) : 0)
 
   const toggleClick = () => {
     setHasClicker(!hasClicker)
+    setCount(0)
   }
 
   const increment = () => {
     setCount(count + 1)
   }
 
+
+
+  useEffect(()=>{
+    localStorage.setItem("totalCount", count)
+  },[count])
+
+  const numberOfClickers = Array(clickerCount).fill(0)
+  const clickerList = numberOfClickers.map((list,index)=>{
+    return <Clicker clickHandler={increment} key={index} clickerName={index}/>
+  })
+  console.log(clickerList)
+
+  
   return (
     <>
       {children}
@@ -21,7 +35,7 @@ export default function App({children}) {
       <button onClick={toggleClick}>{hasClicker ? "Hide":"Show"}</button>
       { hasClicker ? 
       <>
-        <Clicker clickHandler={increment} clickerName="a" color={`hsl( ${Math.random()*360}, 100%, 70%)`}/>  
+       {clickerList}
       </> 
       : null}
     </>
