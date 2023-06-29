@@ -15,17 +15,14 @@ export default function App({clickerCount = 0, children}) {
     setCount(count + 1)
   }
 
-
-
   useEffect(()=>{
     localStorage.setItem("totalCount", count)
   },[count])
 
-  const numberOfClickers = Array(clickerCount).fill(0)
-  const clickerList = numberOfClickers.map((list,index)=>{
-    return <Clicker clickHandler={increment} key={index} clickerName={index}/>
-  })
-  console.log(clickerList)
+  // const numberOfClickers = Array(clickerCount).fill(0)
+  // const clickerList = numberOfClickers.map((list,index)=>{
+  //   return <Clicker clickHandler={increment} key={index} clickerName={index}/>
+  // })
 
   
   return (
@@ -35,7 +32,9 @@ export default function App({clickerCount = 0, children}) {
       <button onClick={toggleClick}>{hasClicker ? "Hide":"Show"}</button>
       { hasClicker ? 
       <>
-       {clickerList}
+       {Array(clickerCount).fill(0).map((list, index)=>{
+        return <Clicker clickHandler={increment} key={index} clickerName={index}/>
+       })}
       </> 
       : null}
     </>
