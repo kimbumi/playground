@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 
 export default function Clicker({clickerName, color ="blue", clickHandler }) {
   const [count, setCount] = useState(localStorage.getItem(clickerName) ? parseInt(localStorage.getItem(clickerName)) : 0)
-    
     useEffect(()=>{
       return () => {
         localStorage.removeItem(clickerName)
       }
     },[])
+
 
     useEffect(()=>{
       localStorage.setItem(clickerName, count)

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Clicker from './Clicker'
 
 export default function App({clickerCount = 0, children}) {
-
   const [hasClicker, setHasClicker] = useState(true)
   const [count, setCount] = useState(localStorage.getItem("totalCount") ? parseInt(localStorage.getItem("totalCount")) : 0)
 
@@ -15,14 +14,13 @@ export default function App({clickerCount = 0, children}) {
     setCount(count + 1)
   }
 
+
+  
   useEffect(()=>{
     localStorage.setItem("totalCount", count)
   },[count])
 
-  // const numberOfClickers = Array(clickerCount).fill(0)
-  // const clickerList = numberOfClickers.map((list,index)=>{
-  //   return <Clicker clickHandler={increment} key={index} clickerName={index}/>
-  // })
+
 
   
   return (
@@ -33,7 +31,7 @@ export default function App({clickerCount = 0, children}) {
       { hasClicker ? 
       <>
        {Array(clickerCount).fill(0).map((list, index)=>{
-        return <Clicker clickHandler={increment} key={index} clickerName={index}/>
+        return <Clicker clickHandler={increment} key={index} clickerName={index} color={`hsl(${Math.random()*360}deg, 100%, 70%)`}/>
        })}
       </> 
       : null}
