@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import Clicker from './Clicker'
 
 export default function App({clickerCount = 0, children}) {
@@ -20,8 +20,14 @@ export default function App({clickerCount = 0, children}) {
     localStorage.setItem("totalCount", count)
   },[count])
 
-
-
+  const colors = useMemo(()=>{
+    console.log("test")
+    const colors = []
+    for(let i = 0; i < clickerCount; i++){
+      colors.push(`hsl(${Math.random()*360}deg, 100%, 70%)`)
+    }
+    return colors
+  },[clickerCount])
   
   return (
     <>
@@ -31,7 +37,7 @@ export default function App({clickerCount = 0, children}) {
       { hasClicker ? 
       <>
        {Array(clickerCount).fill(0).map((list, index)=>{
-        return <Clicker clickHandler={increment} key={index} clickerName={index} color={`hsl(${Math.random()*360}deg, 100%, 70%)`}/>
+        return <Clicker clickHandler={increment} key={index} clickerName={index} color={colors[index]}/>
        })}
       </> 
       : null}

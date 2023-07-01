@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 
 export default function Test() {
     const [count, setCount] = useState(0)
-    console.log("Render")
+    // console.log("Render")
 
     useEffect(()=>{
-        console.log("Test")
+        // console.log("Test")
       },[count])
     return (
     <>
      <button onClick={()=>{
         setCount(count+1)
-        console.log(count)
+        // console.log(count)
      }}>Render?</button>
     </>
   );
