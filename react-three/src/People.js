@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function People() {
-  const [people, setPeople] = useState([
-    { name: "Bumi", id: 1 },
-    { name: "John",id: 2 },
-    { name: "Bob", id: 3 },
-  ]);
+  const [people, setPeople] = useState([]);
+
+  const getPeople = async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    const result = await response.json()
+    setPeople(result)
+  }
+
+  useEffect(()=>{
+   getPeople() 
+  },[])
+
   return (
     <>
       <h1>People</h1>
