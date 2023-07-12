@@ -1,10 +1,8 @@
-import { MeshPhongMaterial } from "three";
-
 export default function Experience() {
   return <>
-    <mesh>
-        <torusGeometry/>
-        <meshBasicMaterial/>
+    <mesh scale={2} position-x={Math.PI * 0.5}>
+        <sphereGeometry args={[1,32,32]}/>
+        <meshBasicMaterial color="hotpink"/>
     </mesh>
   </>
 }
