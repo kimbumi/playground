@@ -11,25 +11,30 @@ export default function Experience() {
   })
   const cubeRef = useRef()
   const groupRef = useRef()
+  const light = useRef()
+
+  console.log(light.current)
 
 
   const threeState = useThree()
 
   return <>
     <orbitControls args={[threeState.camera, threeState.gl.domElement]}/>
+    <directionalLight ref={light} position={[5,2,1]}/>
+    <ambientLight/>
     <group ref={groupRef}>
       <mesh  scale={2} position-x={2} >
         <boxGeometry/>
-        <meshBasicMaterial color="blue"/>
+        <meshStandardMaterial color="blue"/>
       </mesh>
       <mesh ref={cubeRef} scale={1} position-x={-2} >
         <boxGeometry/>
-        <meshBasicMaterial color="red"/>
+        <meshStandardMaterial color="red"/>
       </mesh>
     </group>
     <mesh rotation-x={Math.PI/-2} position-y={-1}>
         <planeGeometry args={[10,10]}/>
-        <meshBasicMaterial color="greenyellow"/>
+        <meshStandardMaterial color="greenyellow"/>
     </mesh>
   </>
 }
