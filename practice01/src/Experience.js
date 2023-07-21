@@ -1,7 +1,7 @@
+import CustomMesh from './CustomMesh.js'
 import { useFrame, useThree, extend } from "@react-three/fiber"
 import { useRef } from "react"
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
-
 extend({OrbitControls})
 
 export default function Experience() {
@@ -12,8 +12,6 @@ export default function Experience() {
   const cubeRef = useRef()
   const groupRef = useRef()
   const light = useRef()
-
-  console.log(light.current)
 
 
   const threeState = useThree()
@@ -36,5 +34,6 @@ export default function Experience() {
         <planeGeometry args={[10,10]}/>
         <meshStandardMaterial color="greenyellow"/>
     </mesh>
+    <CustomMesh triangles={10}/>
   </>
 }
